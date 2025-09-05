@@ -8,8 +8,8 @@ import cat_agreementRouter from './cat_agreement.router'
 import responsibleRouter from './responsible.router'
 import cat_responseRouter from './cat_response.router'
 import cat_statusRouter from './cat_status.router'
-import DeputymanagementRouter from './deputymanagement.router'
-
+import deputymanagementRouter from './deputymanagement.router'
+import areaRouter from './area.router'
 const routers = express()
 //Catalogos basicos
 routers.use('/user',userRouter)
@@ -22,7 +22,8 @@ routers.use('/responsible', responsibleRouter)
 routers.use('/cat_response', cat_responseRouter)
 routers.use('/cat_status', cat_statusRouter)
 // Tablas intermedias
-routers.use('/deputymanagement', DeputymanagementRouter)
+routers.use('/deputymanagement', deputymanagementRouter)
+routers.use('/area', areaRouter)
 // Tablas principales
 
 // Tablas de auditoria
