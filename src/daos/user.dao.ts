@@ -1,5 +1,6 @@
 import pool from '../config/db'; // Asegúrate que tu archivo de conexión esté en esa ruta
 import type IUser  from '../interfaces/user.interface';
+import {v4 as uuidv4} from 'uuid';
 
 export class UserDAO {
   static async findAll(): Promise<IUser[]> {
@@ -13,30 +14,33 @@ export class UserDAO {
   }
 
   static async findByFicha(ficha: number): Promise<IUser | null> {
-    console.log('ficha',ficha)
-    const result = await pool.query(`SELECT * FROM public."USER" WHERE ficha = $1`, [ficha]);
-    console.log(result.rows[0])
+    console.log('Va a buscar la ficha: ',ficha)
+    const query =
+      `SELECT * FROM "user" WHERE ficha = $1`;
+    const values = [ficha]
+    const result = await pool.query(query, values)
     return result.rows[0] || null;
   }
 
   static async create(user: IUser): Promise<IUser> {
     const query = `
-      INSERT INTO USER (name, password, ficha, status, role, usuario_creacion, fecha_creacion, nivel, salt, gerencia, rubrica)
-      VALUES ($1, $2, $3, $4, $5, $6, NOW(), $7, $8, $9, $10)
+      INSERT INTO "user" ("uuid", "fullName", "email", "ficha", "status", "uuidRole", "uuidPermisions", "startDate", "salt", "area", "twoFactor", "password")
+      VALUES ($1, $2, $3, $4, $5, $6, $7, NOW(), $8, $9, $10, $11)
       RETURNING *;
     `;
     const values = [
+      uuidv4(),
       user.fullName,
-      user.password,
+      user.email,
       user.ficha,
       user.status,
       user.uuidRole,
-      user.auditUsers,
+      user.uuidPermisions,
       "sdfjhaselirgbhlbiluehfkanoiusalt123-algo-asi-jajaja",
-      user.area
+      user.area,
+      "asdFactor",
+      user.password
     ];
-    console.log(values)
-    console.log(query)
     const result = await pool.query(query, values);
     return result.rows[0];
   }

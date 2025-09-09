@@ -22,6 +22,7 @@ export default class UserController {
       const encription = new Encription();
       const hashedPassword = await encription.hashPassword(body.password);
       body.password = hashedPassword;
+      console.log("Body que va a crear el usuario: ", body)
       const response = await UserService.createUser(body);
       console.log("response: ",response)
 if(response.ok)
