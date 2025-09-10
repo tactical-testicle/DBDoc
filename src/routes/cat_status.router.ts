@@ -1,13 +1,13 @@
-import Cat_responseController from '../controllers/cat_response.controller';
+import Cat_statusController from '../controllers/cat_status.controller';
 import { Router } from "express";
 
-const cat_responseRouter = Router()
-const cat_responseController = new Cat_responseController()
+const cat_statusRouter = Router()
+const cat_statusController = new Cat_statusController()
 
-cat_responseRouter.post('/create', cat_responseController.createCat_response.bind(cat_responseController))
-cat_responseRouter.get('/reads', cat_responseController.getAllCat_responses.bind(cat_responseController))
-cat_responseRouter.get('/read', cat_responseController.getCat_responseById.bind(cat_responseController))
-cat_responseRouter.post('/update', cat_responseController.updateCat_response.bind(cat_responseController))
-cat_responseRouter.post('/delete', cat_responseController.deleteCat_response.bind(cat_responseController))
+cat_statusRouter.post('/create', cat_statusController.createCat_status.bind(cat_statusController))
+cat_statusRouter.get('/reads', cat_statusController.getAllCat_statuss.bind(cat_statusController))
+cat_statusRouter.get('/read', cat_statusController.getCat_statusById.bind(cat_statusController))
+cat_statusRouter.post('/update', cat_statusController.updateCat_status.bind(cat_statusController))
+cat_statusRouter.post('/delete', cat_statusController.deleteCat_status.bind(cat_statusController))
 
-export default cat_responseRouter;
+export default cat_statusRouter;
