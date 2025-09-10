@@ -10,9 +10,10 @@ import cat_responseRouter from './cat_response.router'
 import cat_statusRouter from './cat_status.router'
 import deputymanagementRouter from './deputymanagement.router'
 import areaRouter from './area.router'
+import documentRouter from './document.router'
 const routers = express()
+
 //Catalogos basicos
-routers.use('/user',userRouter)
 routers.use('/role',roleRouter)
 routers.use('/permisions',permisionsRouter)
 routers.use('/management',managementRouter)
@@ -25,7 +26,8 @@ routers.use('/cat_status', cat_statusRouter)
 routers.use('/deputymanagement', deputymanagementRouter)
 routers.use('/area', areaRouter)
 // Tablas principales
-
+routers.use('/user',userRouter)
+routers.use('/document',documentRouter)
 // Tablas de auditoria
 
 export default routers
