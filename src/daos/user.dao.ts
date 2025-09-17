@@ -4,7 +4,7 @@ import {v4 as uuidv4} from 'uuid';
 
 export class UserDAO {
   static async findAll(): Promise<IUser[]> {
-    const result = await pool.query('SELECT u."ficha", u."fullName", r."name" as role, u."status" FROM "user" u JOIN "role" r ON u."uuidRole" = r."uuid" WHERE u."status" = $1', ['true']);
+    const result = await pool.query('SELECT u."ficha", u."fullName", r."name" as role, u."status" FROM "user" u JOIN "role" r ON u."uuidRole" = r."uuid"');
     return result.rows;
   }
 
